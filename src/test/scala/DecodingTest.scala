@@ -1,4 +1,4 @@
-import Models.{AddFields, Dataflow, Dataflows, FieldAddition, Sink, Source, ValidateFields, Validation}
+import Models.{AddFields, Dataflow, Dataflows, FieldAddition, NotEmpty, NotNull, Sink, Source, ValidateFields, Validation}
 import Decoders.dataFlowsDecoder
 import io.circe.Json
 import io.circe.parser.parse
@@ -26,8 +26,8 @@ class DecodingTest extends FunSuite {
         ),
         Vector(
           ValidateFields("validation", "person_inputs", Vector(
-            Validation("office", Vector("notEmpty")),
-            Validation("age", Vector("notNull")))
+            Validation("office", Vector(NotEmpty)),
+            Validation("age", Vector(NotNull)))
           ),
           AddFields("ok_with_date", "validation_ok", Vector(
             FieldAddition("dt", "current_timestamp"))
