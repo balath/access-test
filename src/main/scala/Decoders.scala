@@ -27,7 +27,14 @@ object Decoders {
   implicit val validationDecoder: Decoder[Validation] = (cursor: ACursor) => for {
     field <- cursor.get[String]("field")
     validations <- cursor.get[Vector[String]]("validations")
-  } yield Validation(field, validations)
+    constraints: Vector[Constraints] = validations.map{
+      case "notEmpty" => NotEmpty
+      case "notNull" => NotNull
+      case _ => InvalidConstraint
+    }
+  } yield Validation(field, constraints)
+
+
 
 
   implicit val sinkDecoder: Decoder[Sink] = (cursor: ACursor) => for {
