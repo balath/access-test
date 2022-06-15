@@ -15,9 +15,9 @@ object Application extends App {
 
   val metadata: String = scala.io.Source.fromFile("metadata/metadata.json").getLines().mkString("")
   val parsedMetadata: Json = parse(metadata).getOrElse(Json.Null)
-  val decodedMetadata: Dataflows = parsedMetadata.as[Dataflows].toOption.get
+  val dataflows: Dataflows = parsedMetadata.as[Dataflows].toOption.get
 
-  decodedMetadata.map(_.run(sparkSession))
+  dataflows.map(dataflow => dataflow.run(sparkSession))
 
   sparkSession.close()
 }

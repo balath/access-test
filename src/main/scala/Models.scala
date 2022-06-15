@@ -29,8 +29,8 @@ object Models {
   //Models the sources and provides a function to create view from these sources.
   case class Source(name: String, path: String, format: String) {
     def createViewFromSource(session: SparkSession): Unit = {
-      val ñapaPath = "data/input/events/person/example.json" //Because of windows
-      val dataframe = session.read.format(format).load(ñapaPath)
+      val tempPath = "data/input/events/person/example.json"
+      val dataframe = session.read.format(format).load(tempPath) //TO-DO let parameter path (outside windows)
       dataframe.createOrReplaceTempView(name)
     }
   }
