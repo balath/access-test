@@ -1,5 +1,6 @@
 import Models._
-import io.circe.{Decoder, ACursor}
+import io.circe.{ACursor, Decoder}
+import org.apache.spark.sql.SaveMode
 
 object Decoders {
   implicit val transformationDecoder: Decoder[Transformation] = (cursor: ACursor) => {
@@ -42,7 +43,13 @@ object Decoders {
     name <- cursor.get[String]("name")
     paths <- cursor.get[Vector[String]]("paths")
     format <- cursor.get[String]("format")
-    saveMode <- cursor.get[String]("saveMode")
+    saveModeString <- cursor.get[String]("saveMode")
+    saveMode = saveModeString.toLowerCase match {
+      case "overwrite" => SaveMode.Overwrite
+      case "append" => SaveMode.Append
+      case "ignore" => SaveMode.Ignore
+      case _ => SaveMode.ErrorIfExists
+    }
   } yield Sink(input, name, paths, format, saveMode)
 
   implicit val sourceDecoder: Decoder[Source] = (cursor: ACursor) => for {

@@ -3,6 +3,7 @@ import Decoders.dataFlowsDecoder
 import io.circe.Json
 import io.circe.parser.parse
 import munit.FunSuite
+import org.apache.spark.sql.SaveMode
 
 class DecodingTest extends FunSuite {
 
@@ -34,8 +35,8 @@ class DecodingTest extends FunSuite {
           )
         ),
         Vector(
-          Sink("ok_with_date", "raw-ok", Vector("/data/output/events/person"), "JSON", "OVERWRITE"),
-          Sink("validation_ko", "raw-ko", Vector("/data/output/discards/person"), "JSON", "OVERWRITE")
+          Sink("ok_with_date", "raw-ok", Vector("/data/output/events/person"), "JSON", SaveMode.Overwrite),
+          Sink("validation_ko", "raw-ko", Vector("/data/output/discards/person"), "JSON", SaveMode.Overwrite)
         )
       )
     ))

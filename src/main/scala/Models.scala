@@ -97,11 +97,11 @@ object Models {
   case class FieldAddition(name: String, function: String)
 
   //Models a sink for a dataframe with several paths but same format and saveMode
-  case class Sink(input: String, name: String, paths: Vector[String], format: String, saveMode: String) {
+  case class Sink(input: String, name: String, paths: Vector[String], format: String, saveMode: SaveMode) {
     def execute(session: SparkSession): Unit = {
-      //      val writer = session.table(input).write.format(format).mode(saveMode)
-      //      paths.map(path => writer.save(s"$path/$name"))
-      session.table(input).show(5, 200)
+      val writer = session.table(input).write.format(format.toLowerCase).mode(saveMode)
+      paths.map(path => writer.save(s"$path/$name"))
+//      session.table(input).show(5, 200)
     }
   }
 }
