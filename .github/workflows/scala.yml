@@ -21,5 +21,12 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - uses: beyondstorage/setup-hdfs@master
+      with:
+        hdfs-version: '3.3.1'
+    - run: curl ${{ env.HDFS_NAMENODE_ADDR }}
     - name: Run 
       run: sbt run
