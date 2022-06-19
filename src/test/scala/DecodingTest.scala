@@ -1,5 +1,5 @@
-import Models.{AddFields, Dataflow, Dataflows, FieldAddition, NotEmpty, NotNull, Sink, Source, ValidateFields, Validation}
-import Decoders.dataFlowsDecoder
+import sdgTest.Models.{AddFields, Dataflow, Dataflows, FieldAddition, NotEmpty, NotNull, Sink, Source, ValidateFields, Validation}
+import sdgTest.Decoders.dataFlowsDecoder
 import io.circe.Json
 import io.circe.parser.parse
 import munit.FunSuite

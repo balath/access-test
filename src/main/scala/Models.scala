@@ -1,7 +1,8 @@
+package sdgTest
+
 import org.apache.spark.sql.DataFrame
-import org.apache.spark.sql._
 import org.apache.spark.sql.functions.{array, _}
-import org.apache.spark.sql.{Column, Dataset, Row, SaveMode, SparkSession}
+import org.apache.spark.sql.{SaveMode, SparkSession}
 
 import scala.annotation.tailrec
 
@@ -99,9 +100,10 @@ object Models {
   //Models a sink for a dataframe with several paths but same format and saveMode
   case class Sink(input: String, name: String, paths: Vector[String], format: String, saveMode: SaveMode) {
     def execute(session: SparkSession): Unit = {
-      val writer = session.table(input).write.format(format.toLowerCase).mode(saveMode)
+      val df = session.table(input)
+      val writer = df.write.format(format.toLowerCase).mode(saveMode)
+      df.show(5, 200)
       paths.map(path => writer.save(s"$path/$name"))
-//      session.table(input).show(5, 200)
     }
   }
 }

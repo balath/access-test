@@ -1,3 +1,4 @@
+package sdgTest
 import Models._
 import io.circe.{ACursor, Decoder}
 import org.apache.spark.sql.SaveMode
