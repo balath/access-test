@@ -2,10 +2,10 @@ import pathlib
 from datetime import datetime
  
 from airflow.models import DAG
-from airflow.operators.bash import BashOperator
+from airflow.operators.bash_operator import BashOperator
 from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOperator
  
-metadataPath = "/tmp/metadata.json"
+metadataPath = "/metadata.json"
 metadataUrl = "https://raw.githubusercontent.com/balath/sdg-access-test/main/metadata/metadata.json?token=GHSAT0AAAAAABVSTSZGEMNFRVF2IIWFBDKQYVMGFQQ"
 
 
@@ -23,9 +23,8 @@ download_metadata = BashOperator(
  
  
 submit_job = SparkSubmitOperator(
-        conf = 
-        application = "./dags/sdg-access-test.jar", 
-        application_args = [metadataPath]
+        application = "${SPARK_HOME}/sdg-test-app.jar",
+        application_args = [metadataPath],
         task_id="submit_job"
     )
   
