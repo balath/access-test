@@ -1,4 +1,6 @@
 .idea
 .vscode
+.bsp/
+out
 target
-src/main/scala/META-INF/
+src/main/META-INF/
