@@ -3,18 +3,14 @@ package sdgTest
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.functions.{array, _}
 import org.apache.spark.sql.{SaveMode, SparkSession}
-
 import scala.annotation.tailrec
-
 
 object Models {
 
   //Models a sequence of dataflows. Provides functions that operate directly in the sequence.
   case class Dataflows(dataflows: Vector[Dataflow]) {
     def apply(n: Int): Dataflow = dataflows(n)
-
     def map[B](f: Dataflow => B): Vector[B] = dataflows.map(f)
-
     def head: Dataflow = dataflows.head
   }
 
@@ -89,12 +85,14 @@ object Models {
     override def apply(session: SparkSession): Unit = {
       @tailrec
       def recAddition(additions: Vector[FieldAddition], partialDataframe: DataFrame): DataFrame = additions match {
-        case Vector(ad, _, _*) => recAddition(additions.tail,partialDataframe.withColumn(ad.name, col(ad.function)))
+        case Vector(ad, _, _*) => recAddition(additions.tail, partialDataframe.withColumn(ad.name, col(ad.function)))
         case Vector(ad) => partialDataframe.withColumn(ad.name, col(ad.function))
       }
+
       recAddition(additions, session.table(input)).createOrReplaceTempView(name)
     }
   }
+
   case class FieldAddition(name: String, function: String)
 
   //Models a sink for a dataframe with several paths but same format and saveMode
@@ -106,4 +104,5 @@ object Models {
       paths.map(path => writer.save(s"$path/$name"))
     }
   }
+
 }
