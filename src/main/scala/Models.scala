@@ -69,6 +69,7 @@ object Models {
       validations.map {
         case NotNull => s"$prefix$field IS NOT NULL"
         case NotEmpty => s"${prefix}LENGTH($field) > 0"
+//        case Range => s"${prefix}($field > min AND $field < max)"
         case _ => InvalidConstraint
       }.mkString(" AND ")
     }
@@ -78,6 +79,7 @@ object Models {
   sealed trait Constraints
   case object NotNull extends Constraints
   case object NotEmpty extends Constraints
+//  case class Range(min: Long, max: Int) extends Constraints
   case object InvalidConstraint extends Constraints
 
   //Transformation to add a new field to a dataframe.

@@ -65,11 +65,13 @@ Para el desarrollo de la aplicación se ha utilizado la versión 2.13.8 de Scala
      3. Ejecutar los dataflows.  
 
 
-### Entorno
+### Problemas con el entorno
 
-1. Configuración del entorno (_WSL2_, _Docker_)
+1. Configuración del entorno (_WSL2_, _Docker_) ✅
 
-2. _Spark_
+2. _Spark_ 
+    
+    1. Empaquetado del jar: compatibilidad entre versiones Scala-Spark
 
 3. _Airflow_
     
@@ -78,7 +80,7 @@ Para el desarrollo de la aplicación se ha utilizado la versión 2.13.8 de Scala
     2. Uso del SparkSubmitOperator
        + Cambio de API según versiones de Airflow 
     3. Configuración de la conexión con _Spark_ 
-       + Conn type para _Spark_ 
+       + Selección del Conn type para _Spark_ 
 
 ### Ejecución
 

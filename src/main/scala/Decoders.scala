@@ -49,6 +49,7 @@ object Decoders {
     constraints: Vector[Constraints] = validations.map {
       case "notEmpty" => NotEmpty
       case "notNull" => NotNull
+      case "range" => ???
       case _ => InvalidConstraint
     }
   } yield Validation(field, constraints)
