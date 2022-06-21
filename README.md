@@ -8,7 +8,7 @@
 
 ### Aplicación
 
-Para el desarrollo de la aplicación se ha utilizado la versión 2.13.8 de Scala y la 3.2.1 de Spark, además de las siguientes herramientas:
+Para el desarrollo de la aplicación se ha utilizado la versión 2.12.16 de Scala y la 3.2.1 de Spark, además de las siguientes herramientas:
 + Build tool: [sbt](https://www.scala-sbt.org/)
 + Testing: [mUnit](https://scalameta.org/munit/)
 + Json: [circe](https://circe.github.io/circe/)
