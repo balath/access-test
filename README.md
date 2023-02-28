@@ -1,5 +1,7 @@
 # prueba-acceso
 
+[Enunciado de la prueba](https://github.com/balath/access-test/blob/main/prueba-tecnica-xxx.pdf)
+
 ### Desarrollo de la prueba
 
 
