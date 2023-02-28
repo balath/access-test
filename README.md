@@ -1,4 +1,4 @@
-# prueba-acceso
+# Prueba técnica (Data Engineer)
 
 [Enunciado de la prueba](https://github.com/balath/access-test/blob/main/prueba-tecnica-xxx.pdf)
 
