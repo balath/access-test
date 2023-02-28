@@ -6,10 +6,10 @@ from airflow.contrib.operators.spark_submit_operator import SparkSubmitOperator 
 #from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOperator #Airflow 2
  
 metadataPath = "/metadata.json"
-metadataUrl = "https://raw.githubusercontent.com/balath/sdg-access-test/main/metadata/metadata.json?token=GHSAT0AAAAAABVSTSZGEMNFRVF2IIWFBDKQYVMGFQQ"
+metadataUrl = "https://raw.githubusercontent.com/balath/access-test/main/metadata/metadata.json?token=GHSAT0AAAAAABVSTSZGEMNFRVF2IIWFBDKQYVMGFQQ"
 
 dag = DAG(
-    dag_id="sdg-access-test",
+    dag_id="access-test",
     schedule_interval=None,
     start_date=datetime(2022, 6, 17),
 )
@@ -21,7 +21,7 @@ download_metadata = BashOperator(
 )
 
 submit_job = SparkSubmitOperator(
-    application = "${SPARK_HOME}/sdg-test-app.jar",
+    application = "${SPARK_HOME}/access-test-app.jar",
     application_args = [metadataPath],
     task_id="submit_job"
 )

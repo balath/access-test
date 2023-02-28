@@ -1,4 +1,4 @@
-package sdgTest
+package accessTest
 import io.circe.Json
 import io.circe.parser.parse
 import Decoders.dataFlowsDecoder
@@ -12,7 +12,7 @@ object Application extends App {
     case Success(metadata) => {
       val sparkSession: SparkSession = SparkSession
         .builder
-        .appName("sdg-access-test")
+        .appName("access-test")
         .master("local")
 //        .master("spark://da1370c6cc35:7077 ")
         .getOrCreate()

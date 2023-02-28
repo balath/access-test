@@ -1,4 +1,4 @@
-package sdgTest
+package accessTest
 
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.functions.{array, _}
@@ -69,7 +69,6 @@ object Models {
       validations.map {
         case NotNull => s"$prefix$field IS NOT NULL"
         case NotEmpty => s"${prefix}LENGTH($field) > 0"
-//        case Range => s"${prefix}($field > min AND $field < max)"
         case _ => InvalidConstraint
       }.mkString(" AND ")
     }

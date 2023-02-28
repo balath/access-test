@@ -1,6 +1,7 @@
-# sdg-prueba-acceso
+# prueba-acceso
 
 ### Desarrollo de la prueba
+
 
 1. [Desarrollo de la aplicación con Scala+Spark](#Aplicación)
 2. [Configuración del entorno de Spark+Airflow](#Entorno)
